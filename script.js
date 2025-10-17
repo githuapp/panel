@@ -29,39 +29,38 @@ function loadFileData(filename) {
   return gk_fileData[filename] || "";
 }
 
-const GITHUB_TOKEN = localStorage.getItem('githubToken') || '';
+// --- CONFIGURACIÓN GLOBAL ---
 var TMDB_API_KEY = "38e497c6c1a043d1341416e80915669f";
 var USUARIO = "lzrdrz10";
 var REPO = "sv";
 
-var seleccionado = {};
-
-// Function to get token from localStorage
+// --- TOKEN DE GITHUB ---
 function getGithubToken() {
   return localStorage.getItem('githubToken') || '';
 }
 
-// Save token to localStorage
+// Guardar token al hacer clic
 document.getElementById('saveTokenBtn').addEventListener('click', function() {
   const tokenInput = document.getElementById('githubToken').value.trim();
   if (tokenInput) {
     localStorage.setItem('githubToken', tokenInput);
-    alert('Token guardado con éxito');
-    document.getElementById('githubToken').value = ''; // Clear input after saving
+    alert('✅ Token guardado con éxito');
   } else {
-    alert('Por favor, ingresa un token válido');
+    alert('⚠️ Por favor, ingresa un token válido');
   }
 });
 
-// Clear token from localStorage
+// Borrar token
 document.getElementById('clearTokenBtn').addEventListener('click', function() {
   localStorage.removeItem('githubToken');
-  alert('Token borrado con éxito');
-  document.getElementById('githubToken').value = ''; // Clear input
+  alert('🗑️ Token borrado con éxito');
 });
 
-// Initialize token input with saved token (if any)
+// Mostrar el token guardado (si existe)
 document.getElementById('githubToken').value = getGithubToken();
+
+// Definir la constante global que usará el resto del script
+const GITHUB_TOKEN = getGithubToken();
 
 // Función para quitar tildes (solo para nombres de carpetas)
 function quitarTildes(str) {
