@@ -106,6 +106,34 @@
 
 
   <script src="script.js"></script>
+<script>
+  // Guardar token en localStorage
+  const saveTokenBtn = document.getElementById('saveTokenBtn');
+  const clearTokenBtn = document.getElementById('clearTokenBtn');
+  const githubTokenInput = document.getElementById('githubToken');
+
+  // Si ya hay un token guardado, mostrarlo parcialmente
+  const savedToken = localStorage.getItem('githubToken');
+  if (savedToken) {
+    githubTokenInput.value = savedToken;
+  }
+
+  saveTokenBtn.addEventListener('click', () => {
+    const token = githubTokenInput.value.trim();
+    if (!token) {
+      alert('⚠️ Por favor ingresa un token válido');
+      return;
+    }
+    localStorage.setItem('githubToken', token);
+    alert('✅ Token guardado correctamente');
+  });
+
+  clearTokenBtn.addEventListener('click', () => {
+    localStorage.removeItem('githubToken');
+    githubTokenInput.value = '';
+    alert('🗑️ Token eliminado');
+  });
+</script>
 
 </body>
 </html>
