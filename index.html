@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Panel Lz</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" rel="stylesheet" />
+  <link rel="stylesheet" href="style.css">
+</head>
+<body class="text-white min-h-screen flex flex-col items-center p-6">
+  <!-- Título -->
+  <h2 class="text-3xl md:text-4xl font-bold neon-text mb-6 text-center">PANEL LZPLAY</h2>
+
+  <!-- Controles -->
+  <div class="w-full max-w-xl space-y-4">
+    <!-- Token Input -->
+    <div class="flex flex-col gap-4">
+      <input id="githubToken" type="text" placeholder="🔑 Ingresa tu token de GitHub" 
+        class="w-full p-3 rounded-lg bg-[#111] text-white border border-[#00ff7f] focus:ring-2 focus:ring-[#00ff7f]" />
+      <div class="flex gap-3">
+        <button id="saveTokenBtn" class="flex-1 p-3 rounded-lg font-bold bg-gradient-to-r from-[#00ff7f] to-[#00cc66] text-black hover:scale-105 transition">
+          💾 Guardar Token
+        </button>
+        <button id="clearTokenBtn" class="flex-1 p-3 rounded-lg font-bold bg-red-600 hover:bg-red-700 transition">
+          🗑️ Borrar Token
+        </button>
+      </div>
+    </div>
+
+    <!-- Selectores en fila -->
+    <div class="flex flex-col md:flex-row gap-4">
+      <select id="tipo-contenido" 
+        class="flex-1 p-3 rounded-lg bg-[#111] text-white border border-[#00ff7f] focus:ring-2 focus:ring-[#00ff7f]">
+        <option value="movie">Película</option>
+        <option value="tv">Serie</option>
+      </select>
+      <select id="platform" 
+        class="flex-1 p-3 rounded-lg bg-[#111] text-white border border-[#00ff7f] focus:ring-2 focus:ring-[#00ff7f]">
+        <option value="" disabled selected>Selecciona una plataforma</option>
+        <!-- ... (rest of platform options remain unchanged) ... -->
+      </select>
+    </div>
+
+    <!-- Buscador -->
+    <input id="buscador" type="text" placeholder="🔍 Busca una película o serie..." 
+      class="w-full p-3 rounded-lg bg-[#111] text-white border border-[#00ff7f] focus:ring-2 focus:ring-[#00ff7f]" />
+  </div>
+
+  <!-- Resultados -->
+  <div id="resultados" class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-4 mt-6 w-full max-w-4xl">
+    <!-- Items dinámicos aquí -->
+  </div>
+
+  <!-- Modal -->
+  <div id="modal" class="modal fixed inset-0 bg-black/80 hidden justify-center items-center z-50">
+    <div class="modal-content bg-[#111] p-6 rounded-2xl shadow-lg w-[95%] max-w-lg">
+      <h3 id="modal-titulo" class="text-xl font-bold neon-text mb-4"></h3>
+      
+      <!-- Película -->
+      <div id="modal-pelicula" class="modal-section space-y-3">
+        <input id="videoLink" type="text" placeholder="🎬 URL del video" class="w-full p-3 rounded-lg bg-[#222] border border-[#00ff7f]" />
+        <input id="downloadLink" type="text" placeholder="⬇️ URL de descarga" class="w-full p-3 rounded-lg bg-[#222] border border-[#00ff7f]" />
+      </div>
+
+      <!-- Serie -->
+      <div id="modal-serie" class="modal-section hidden mt-4">
+        <h4 class="text-lg font-semibold text-[#00ff7f] mb-2">📺 Temporadas</h4>
+        <div id="temporadas-contenedor" class="max-h-[300px] overflow-y-auto space-y-2"></div>
+      </div>
+
+      <div class="flex gap-3 mt-6">
+        <button id="publicarBtn" class="flex-1 p-3 rounded-lg font-bold bg-gradient-to-r from-[#00ff7f] to-[#00cc66] text-black hover:scale-105 transition">✅ Publicar</button>
+        <button onclick="cerrarModal()" class="flex-1 p-3 rounded-lg font-bold bg-red-600 hover:bg-red-700 transition">❌ Cancelar</button>
+      </div>
+
+      <!-- Animación de progreso -->
+      <div id="animacionPublicar" class="hidden mt-6 w-full max-w-xl">
+        <div class="w-full h-3 bg-[#222] rounded-lg overflow-hidden">
+          <div id="progreso" class="h-3 bg-[#00ff7f] w-0 transition-all duration-500"></div>
+        </div>
+        <p id="mensaje" class="text-center mt-2 text-[#00ff7f]">Publicando...</p>
+      </div>
+    </div>
+  </div>
+
+
+  <script src="script.js"></script>
+
+</body>
+</html>
