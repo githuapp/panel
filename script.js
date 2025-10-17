@@ -29,6 +29,7 @@ function loadFileData(filename) {
   return gk_fileData[filename] || "";
 }
 
+const GITHUB_TOKEN = localStorage.getItem('githubToken') || '';
 var TMDB_API_KEY = "38e497c6c1a043d1341416e80915669f";
 var USUARIO = "lzrdrz10";
 var REPO = "sv";
